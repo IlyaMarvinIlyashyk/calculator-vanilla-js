@@ -3,8 +3,8 @@
 
 const calculator = {
     displayedValue: '0',
-    firstOperator: null,
-    secondOperator: false,
+    firstRotatingNumber: null,
+    secondRotatingNumber: false,
     operator: null
 }
 
@@ -20,11 +20,11 @@ const updateDisplay = () => {
 
 const inputDigitUpdater = (digit) => {
 
-    // if second number is true (first name has already been inputted) then change the display value to that number, THEN make it false, which will in turn make the regular expression fire off
+    // if second number is true (first number has already been inputted) then change the display value to that number, THEN make it false, which will in turn make the regular expression fire off
 
-    if (calculator.secondOperator === true) {
+    if (calculator.secondRotatingNumber === true) {
         calculator.displayedValue = digit;
-        calculator.secondOperator = false;
+        calculator.secondRotatingNumber = false;
     } 
     
     else {
@@ -46,8 +46,6 @@ const inputDigitUpdater = (digit) => {
 
 const inputDecimal = (decimal) => {
 
-    // calculator.displayedValue = displayedValue + decimal
-
     if (!calculator.displayedValue.includes(decimal)) {
         calculator.displayedValue += decimal
     }
@@ -58,66 +56,60 @@ const handleOperator = (actualOperator) => {
 
     // parseFloat() looks for value in string and coverts to number
 
-    const { displayedValue, firstOperator, operator } = calculator
+    const { displayedValue, firstRotatingNumber, operator } = calculator
 
     const inputValue = parseFloat(displayedValue);
 
-    if (firstOperator === null && inputValue !== NaN) {
-        calculator.firstOperator = inputValue
+    if (firstRotatingNumber === null && inputValue !== NaN) {
+        calculator.firstRotatingNumber = inputValue
     }
 
     else if (operator) {
-        const result = calculate(firstOperator, inputValue, operator)
+        const result = calculate(firstRotatingNumber, inputValue, operator)
 
         calculator.displayedValue = result;
-        calculator.firstOperator = result
+        calculator.firstRotatingNumber = result
     } 
 
-    calculator.secondOperator = true
+    calculator.secondRotatingNumber = true
     calculator.operator = actualOperator    
 
 }
 
-const calculate = (firstOperator, secondOperator, operator) => {
+const calculate = (firstNumber, secondNumber, operator) => {
     if (operator === "+") {
-        return firstOperator + secondOperator
+        return firstNumber + secondNumber
     }
 
     else if (operator === "-") {
-        return firstOperator - secondOperator
+        return firstNumber - secondNumber
     }
 
     else if (operator === "/") {
-        return firstOperator / secondOperator
+        return firstNumber / secondNumber
     }
 
     else if (operator === "*") {
-        return firstOperator * secondOperator
+        return firstNumber * secondNumber
     }
 
     // when a new operator is selected or the equals is pressed
     // carry out the given task of the last operator 
 
-    console.log(selectedOperator)
-
-    return secondOperator 
+    return secondNumber 
 }
 
 const clear = () => {
     calculator.displayedValue = '0'
     calculator.firstOperator = null
-    calculator.secondOperator = false
+    calculator.secondRotatingNumber = false
     calculator.operator = null
-
 }
 
 const keys = document.querySelector(".calculatorKeys");
 
 keys.addEventListener("click", e => {
     const target = e.target;
-
-    // put it in an object
-    // BUT WHY**************
 
     // matches() returns a boolean which searches the string to match against a regular expressions 
     
@@ -131,7 +123,6 @@ keys.addEventListener("click", e => {
 
     else if (target.classList.contains('operator')) {
         handleOperator(target.value);
-
         // remember you need to be updating the display after every action  
         updateDisplay()
         return 
@@ -147,11 +138,6 @@ keys.addEventListener("click", e => {
         clear()
         updateDisplay()
         return 
-    }
-
-    else if (target.classList.contains('equals')) {
-        console.log(target.value)
-        return
     }
 
     inputDigitUpdater(target.value);
