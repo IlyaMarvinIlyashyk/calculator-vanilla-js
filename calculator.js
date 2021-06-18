@@ -116,9 +116,6 @@ const keys = document.querySelector(".calculatorKeys");
 keys.addEventListener("click", e => {
     const target = e.target;
 
-    // put it in an object
-    // BUT WHY**************
-
     // matches() returns a boolean which searches the string to match against a regular expressions 
     
     // const value = e.target.value
