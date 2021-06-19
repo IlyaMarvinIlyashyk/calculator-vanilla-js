@@ -69,12 +69,22 @@ const handleOperator = (actualOperator) => {
 
         calculator.displayedValue = result;
         calculator.firstRotatingNumber = result
+        console.log("operator", operator)
     } 
 
-    calculator.secondRotatingNumber = true
-    calculator.operator = actualOperator    
+    // else if (inputValue === !NaN) {
+        console.log("input value", typeof(inputValue))
+        calculator.secondRotatingNumber = true
+        calculator.operator = actualOperator    
+    // }
+
+    console.log("calculator", calculator)
+    console.log("first", calculator.firstRotatingNumber)
+    console.log("second", calculator.secondRotatingNumber)
+
 
 }
+
 
 const calculate = (firstNumber, secondNumber, operator) => {
     if (operator === "+") {
@@ -96,12 +106,14 @@ const calculate = (firstNumber, secondNumber, operator) => {
     // when a new operator is selected or the equals is pressed
     // carry out the given task of the last operator 
 
+    // else equals 
+
     return secondNumber 
 }
 
 const clear = () => {
     calculator.displayedValue = '0'
-    calculator.firstOperator = null
+    calculator.firstRotatingNumber = null
     calculator.secondRotatingNumber = false
     calculator.operator = null
 }
