@@ -60,6 +60,11 @@ const handleOperator = (actualOperator) => {
 
     const inputValue = parseFloat(displayedValue);
 
+    if (operator && calculator.secondRotatingNumber) {
+        calculator.operator = actualOperator
+        return
+    }
+
     if (firstRotatingNumber === null && inputValue !== NaN) {
         calculator.firstRotatingNumber = inputValue
     }
