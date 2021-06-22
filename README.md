@@ -1,3 +1,3 @@
-(still a work in progress)
+<h1>Calculator!</h1>
 
-A simple calculator built in vanilla JS, using CSS Grid for styling 
+<p> A simple calculator built in vanilla JS, using CSS Grid for styling. Go wild! </p> 
