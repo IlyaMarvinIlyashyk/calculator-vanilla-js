@@ -6,8 +6,6 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after {box-sizing: inherit}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
-
 main {
     height: 90vh;
     display: flex;
@@ -18,18 +16,16 @@ main {
 
 button {
     font-size: calc(1rem + 1vw);
+    background-color: whitesmoke;
 }
 
 button:hover {
     background-color: white;
 }
 
-.operator {
+.operator,
+.erase {
     background-color: lightgray;
-}
-
-.equals {
-    background-color: salmon;
 }
 
 .calculatorKeys {
@@ -44,9 +40,14 @@ button:hover {
 }
 
 .equals {
-    grid-row-start: 2;
+    grid-row-start: 3;
     grid-row-end: 6;
     grid-column-start: 4;
+    background-color: salmon;
+}
+
+.equals:hover {
+    background-color: lightsalmon;
 }
 
 .calculatorScreen {
